@@ -1,0 +1,204 @@
+timestamp: 2011-06-16T16:43:13.072000
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(128) UNIQUE,
+    password VARCHAR(255),
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    registration_id VARCHAR(255),
+    created_on DATETIME,
+    site_language VARCHAR(128),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.173000
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.272000
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.483000
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    name VARCHAR(255),
+    table_name VARCHAR(255),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.584000
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(255),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.693000
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on DATETIME,
+    url VARCHAR(255),
+    uuid VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:13.957000
+CREATE TABLE siteinfo(
+    id INT AUTO_INCREMENT NOT NULL,
+    site_title VARCHAR(255),
+    site_subtitle VARCHAR(255),
+    site_description LONGTEXT,
+    site_front LONGTEXT,
+    site_aboutme LONGTEXT,
+    site_keywords LONGTEXT,
+    site_footer LONGTEXT,
+    site_logo LONGTEXT,
+    site_css LONGTEXT,
+    site_url LONGTEXT,
+    site_layout VARCHAR(255),
+    site_language VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.369000
+CREATE TABLE posts(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    title VARCHAR(255),
+    description LONGTEXT,
+    text_slice LONGTEXT,
+    keywords LONGTEXT,
+    categories LONGTEXT,
+    created_on DATETIME,
+    published_on DATETIME,
+    updated_on DATETIME,
+    created_by_id INT,
+    updated_by_id INT,
+    created_by_name VARCHAR(255),
+    updated_by_name VARCHAR(255),
+    published INT,
+    is_page INT,
+    page_order INT,
+    full_text LONGTEXT,
+    post_url LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.472000
+CREATE TABLE categories(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    title VARCHAR(255),
+    description LONGTEXT,
+    created_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.572000
+CREATE TABLE categorieslist(
+    id INT AUTO_INCREMENT NOT NULL,
+    cat_id INT,
+    post_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.650000
+CREATE TABLE tags(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    title VARCHAR(255),
+    created_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.727000
+CREATE TABLE tagslist(
+    id INT AUTO_INCREMENT NOT NULL,
+    tag_id INT,
+    post_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.817000
+CREATE TABLE comments(
+    id INT AUTO_INCREMENT NOT NULL,
+    post_id INT,
+    author_id INT,
+    author_name VARCHAR(255),
+    author_email VARCHAR(255),
+    author_url LONGTEXT,
+    reply_id INT,
+    approved INT,
+    comment LONGTEXT,
+    comment_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:14.905000
+CREATE TABLE links(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    title VARCHAR(255),
+    url LONGTEXT,
+    description LONGTEXT,
+    created_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:15.033000
+CREATE TABLE style(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    title VARCHAR(255),
+    css LONGTEXT,
+    layout VARCHAR(255),
+    author LONGTEXT,
+    link LONGTEXT,
+    description LONGTEXT,
+    created_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:15.406000
+CREATE TABLE images(
+    id INT AUTO_INCREMENT NOT NULL,
+    blob_key VARCHAR(255),
+    comment LONGTEXT,
+    image VARCHAR(255),
+    thumb VARCHAR(255),
+    upload_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-16T16:43:15.541000
+CREATE TABLE avatars(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT,
+    blob_key VARCHAR(255),
+    image VARCHAR(255),
+    url VARCHAR(255),
+    comment LONGTEXT,
+    thumb VARCHAR(255),
+    upload_on DATETIME,
+    up_count INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!

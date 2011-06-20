@@ -1,0 +1,9 @@
+﻿*.pyc
+*.pyo
+*.bak
+*.egg-info
+.installed.cfg
+bin
+local_settings.py
+*~
+.hg*

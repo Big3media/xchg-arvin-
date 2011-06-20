@@ -1,0 +1,40 @@
+todo:
+
+adapter insert and update should table listm not dict
+update of birthday in gae_tests does not work
+
+- crm + appointments
+- fix gae_admin
+- fix estore
+- fix doc_net
+- fix crm
+- fix kpax
+- pick one log analyzer
+- jpolite (no), iframes (yes) -> events (events_old is broken)
+- social
+- unipy + d2l + cas (merge!)
+- webmail vs webmailer?
+- survey login
+
+Undocumented features:
+
+- app level logging
+- polymodel on GAE
+- web2py_ajax handles prepend, append, hide, pre-validation of decimal
+fields
+- dbsessions2trash.py
+- pyfpdf
+- markmin2latex, markmin2pdf
+- Storage getfirst, getlast, getall
+- db(db.table), db(db.table.id) equivalent to db(db.table.id>0)
+- on_failed_authorization can be a function
+- gluon/contrib/login_methods/cas_auth.py for integration between CAS
+and Auth
+- scripts/autoroutes.py
+- admin wizard
+- mercurial admin now allows list of files, versions, and retrieve
+- new error report system
+- SQLFORM.accepts(detect_record_change).record_changed
+- MENU supports None links
+- web2py.py -J for running cron
+- service.jsonrpc supports service.JsonRpcException 
